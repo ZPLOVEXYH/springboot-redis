@@ -6,15 +6,17 @@ spring:
       pool:
         max-active: 8
         max-wait: -1
-        max-idle: 500
+        max-idle: 8
         min-idle: 0
-    timeout: 0
+    timeout: 3000
     port: 6379
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/mall?useUnicode=true&characterEncoding=utf8
     username: root
     password: mysql
+  session:
+    store-type: redis
 mybatis:
   type-aliases-package: com.sample.spring.boot.redis.domain
   mapper-locations: classpath:mapper/*.xml
