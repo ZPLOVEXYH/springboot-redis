@@ -4,7 +4,6 @@ package com.sample.spring.boot.redis.controller;
 import com.sample.spring.boot.redis.bean.ReturnData;
 import com.sample.spring.boot.redis.bean.StatusCode;
 import com.sample.spring.boot.redis.domain.User;
-import com.sample.spring.boot.redis.exception.MyException;
 import com.sample.spring.boot.redis.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -31,6 +30,7 @@ public class LoginController
         if (user != null)
         {
             HttpSession session = request.getSession();
+
             session.setAttribute("loginUserId", user.getUserId());
             redisTemplate.opsForValue().set("loginUser:" + user.getUserId(), session.getId());
 
