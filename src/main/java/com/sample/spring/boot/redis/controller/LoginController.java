@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.Base64;
 
 @RestController
@@ -69,7 +72,13 @@ public class LoginController
         }
     }
 
-    public static void main(String[] args) {
-        System.out.println(base64Decode("YjE4NmIyMGQtOTI4OS00OTI4LWI0MWUtNTkwODhhMzMxZTFi"));
+    public static void main(String[] args) throws UnsupportedEncodingException {
+//        System.out.println(base64Decode("YjE4NmIyMGQtOTI4OS00OTI4LWI0MWUtNTkwODhhMzMxZTFi"));
+
+        String encodeStr = URLEncoder.encode("熊袁慈", "utf-8");
+        System.out.println("urlencode加密之后的字符串为：" + encodeStr);
+
+        String decodeStr = URLDecoder.decode("%E7%86%8A%E8%A2%81%E6%85%88", "utf-8");
+        System.out.println(decodeStr);
     }
 }
