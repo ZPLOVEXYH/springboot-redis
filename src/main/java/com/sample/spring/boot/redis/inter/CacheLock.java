@@ -3,7 +3,7 @@ package com.sample.spring.boot.redis.inter;
 import java.lang.annotation.*;
 import java.util.concurrent.TimeUnit;
 
-@Target(ElementType.METHOD)
+@Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited

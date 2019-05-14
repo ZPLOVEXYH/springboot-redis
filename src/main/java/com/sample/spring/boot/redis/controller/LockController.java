@@ -6,6 +6,7 @@ import com.sample.spring.boot.redis.inter.CacheParam;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CacheLock(prefix = "lock")
 public class LockController {
 
     @CacheLock(prefix = "test", expire = 60)

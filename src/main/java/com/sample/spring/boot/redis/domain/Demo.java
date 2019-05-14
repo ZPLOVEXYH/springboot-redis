@@ -10,6 +10,6 @@ import lombok.ToString;
 @ToString
 public class Demo {
 
-    @CacheParam
-    private String token;
+    @CacheParam(name = "token")
+    public String token;
 }
