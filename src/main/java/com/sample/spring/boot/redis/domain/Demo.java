@@ -11,5 +11,5 @@ import lombok.ToString;
 public class Demo {
 
     @CacheParam(name = "token")
-    public String token;
+    private String token;
 }
