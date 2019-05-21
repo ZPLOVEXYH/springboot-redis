@@ -14,8 +14,6 @@ public class DynamicProxyImpl implements InvocationHandler {
     public Object createProxy(Object targetObject) {
         this.targetObject = targetObject;
 
-//        targetObject.getClass().getInterfaces();
-
         return Proxy.newProxyInstance(
                 this.getClass().getClassLoader(),
                 targetObject.getClass().getInterfaces(),
