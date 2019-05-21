@@ -6,6 +6,6 @@ public class TestUserDao {
         UserDao userDao = new UserDao();
 
         User user = new User("zhangsan", 10);
-        userDao.add(user);
+        userDao.exec(user);
     }
 }

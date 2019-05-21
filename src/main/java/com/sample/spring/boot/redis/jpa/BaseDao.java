@@ -26,9 +26,9 @@ public class BaseDao<T> {
     private Class<T> beanClass;
 
     public BaseDao() {
-		/*this指代子类
-                  通过子类得到子类传给父类的泛型Class对象，假设是User.class
-                */
+        /**
+         * this指代子类，通过子类得到子类传给父类的泛型Class对象，假设是User.class
+         */
         beanClass = (Class) ((ParameterizedType) this.getClass()
                 .getGenericSuperclass())
                 .getActualTypeArguments()[0];

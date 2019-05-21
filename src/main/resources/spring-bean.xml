@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--<bean id = "person" class="com.sample.spring.boot.redis.bean.Person" init-method="init" destroy-method="destroy">
+        <constructor-arg name="nameArg" value="test"></constructor-arg>
+    </bean>
+
+    <bean id="myBeanPostProcessor" class="com.sample.spring.boot.redis.processor.MyBeanPostProcessor">
+
+    </bean>-->
+
+    <!-- aop动态代理 -->
+    <bean id="afterLog" class="com.sample.spring.boot.redis.aop.AfterLog"></bean>
+
+    <bean id="beforeLog" class="com.sample.spring.boot.redis.aop.BeforeLog"></bean>
+
+    <bean id="iUserServ" class="com.sample.spring.boot.redis.proxy.IUserServImpl"></bean>
+
+    <bean id="proxyFactoryBean" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <!-- 可以添加多个接口 -->
+        <property name="interfaces">
+            <list>
+                <value>com.sample.spring.boot.redis.proxy.IUserServ</value>
+            </list>
+        </property>
+
+        <!-- 目标类对象 -->
+        <property name="target" ref="iUserServ"></property>
+
+        <!-- 引入通知，拦截的方法名称 -->
+        <property name="interceptorNames">
+            <list>
+                <value>beforeLog</value>
+                <value>afterLog</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- spring aop 2.x -->
+    <bean id="logAdvice" class="com.sample.spring.boot.redis.aop.LogAdvice"></bean>
+
+    <aop:config>
+        <aop:aspect id="logAdvice" ref="logAdvice">
+            <aop:pointcut id="beforePointCut" expression="execution(* findAll*(..))"/>
+            <!--<aop:pointcut id="afterPointCut" expression="execution(* findAll*(..))" />-->
+
+            <aop:before method="beforeMethod" pointcut-ref="beforePointCut"></aop:before>
+            <!--<aop:after method="afterMethod" pointcut-ref="afterPointCut"></aop:after>-->
+        </aop:aspect>
+    </aop:config>
+
+</beans>

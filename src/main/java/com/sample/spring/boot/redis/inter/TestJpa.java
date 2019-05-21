@@ -9,22 +9,25 @@ public class TestJpa {
     }
 }
 
-class A<String> {
-    public A(){
+class A<String, Double> {
+    public A() {
         Class clazz = this.getClass();
         System.out.println(clazz.getName());
 
         // 得到超类
+//        Type type = clazz.getGenericSuperclass();
         Type type = clazz.getGenericSuperclass();
         ParameterizedType parameterizedType = (ParameterizedType) type;
         Type[] types = parameterizedType.getActualTypeArguments();
-
-        Class actualTypeArgument = (Class) types[0];
-        System.out.println(actualTypeArgument);
-        System.out.println(clazz.getName());
+        for (Type type2 : types) {
+            System.out.println("类型名称：" + type2.getTypeName());
+        }
+//
+//        Class actualTypeArgument = (Class) types[0];
+//        System.out.println(actualTypeArgument);
+//        System.out.println(clazz.getName());
     }
 }
 
-class B extends A<String> {
-
+class B extends A<String, Double> {
 }

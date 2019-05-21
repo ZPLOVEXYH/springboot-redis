@@ -12,4 +12,8 @@ public class Demo {
 
     @CacheParam(name = "token")
     private String token;
+
+    public void doTest() {
+        System.out.println("test do...");
+    }
 }

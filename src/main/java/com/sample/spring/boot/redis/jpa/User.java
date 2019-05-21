@@ -7,6 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
+@Table(value = "user")
 public class User {
 
     private String name;
