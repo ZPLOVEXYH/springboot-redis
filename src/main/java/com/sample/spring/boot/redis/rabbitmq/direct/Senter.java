@@ -26,8 +26,8 @@ public class Senter {
             System.out.println("发送消息给到：" + EXCHANGE_NAME + "交换机，路由：info");
 
             String errorMessage = "hello direct [error]";
-            channel.basicPublish(EXCHANGE_NAME, "info", null, errorMessage.getBytes());
-            System.out.println("发送消息给到：" + EXCHANGE_NAME + "交换机，路由：info2");
+            channel.basicPublish(EXCHANGE_NAME, "error", null, errorMessage.getBytes());
+            System.out.println("发送消息给到：" + EXCHANGE_NAME + "交换机，路由：error");
 
             channel.close();
             connection.close();

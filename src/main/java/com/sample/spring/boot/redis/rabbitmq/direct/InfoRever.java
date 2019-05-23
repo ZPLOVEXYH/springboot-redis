@@ -21,6 +21,7 @@ public class InfoRever {
             channel.queueDeclare(QUEUE_NAME, false, false, false, null);
             // queue, exchange, routingKey
             channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, "info");
+            channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, "error");
             channel.basicQos(1);
             Consumer consumer = new DefaultConsumer(channel) {
                 @Override
@@ -44,7 +45,7 @@ public class InfoRever {
             };
 
             // queue, callback
-            channel.basicConsume(QUEUE_NAME, false, consumer);
+            channel.basicConsume(QUEUE_NAME, true, consumer);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (TimeoutException e) {
