@@ -11,7 +11,7 @@ import java.util.concurrent.TimeoutException;
  */
 public class ConnectionUtils {
 
-    private final static String host = "192.168.176.133";
+    private final static String host = "192.168.176.134";
 
     private final static int port = 5672;
 
