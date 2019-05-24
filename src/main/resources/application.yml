@@ -17,6 +17,12 @@ spring:
     password: mysql
   session:
     store-type: redis
+  rabbitmq:
+    host: 192.168.176.134
+    port: 5672
+    listener:
+      simple:
+        prefetch: 0
 mybatis:
   type-aliases-package: com.sample.spring.boot.redis.domain
   mapper-locations: classpath:mapper/*.xml
@@ -28,6 +34,3 @@ logging:
           boot:
             redis: debug
 
-rabbitmq:
-  host: 192.168.176.132
-  port: 5672
